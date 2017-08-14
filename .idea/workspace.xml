@@ -30,8 +30,8 @@
       <file leaf-file-name="UserModel.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classes/model/UserModel.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="188" column="29" lean-forward="true" selection-start-line="188" selection-start-column="29" selection-end-line="188" selection-end-column="29" />
+            <state relative-caret-position="581">
+              <caret line="93" column="19" lean-forward="false" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
               <folding>
                 <element signature="e#6#98#0#PHP" expanded="true" />
               </folding>
@@ -39,8 +39,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserDao.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/classes/model/UserDao.class.php">
+      <file leaf-file-name="UserModelBase.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/classes/model/UserModelBase.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="356">
+              <caret line="237" column="41" lean-forward="true" selection-start-line="237" selection-start-column="41" selection-end-line="237" selection-end-column="41" />
+              <folding>
+                <element signature="e#6#98#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserDao.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classes/dao/UserDao.class.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="86">
               <caret line="102" column="7" lean-forward="true" selection-start-line="102" selection-start-column="7" selection-end-line="102" selection-end-column="7" />
@@ -125,18 +137,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding>
-                <element signature="e#6#98#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="IdeDocumentHistory">
@@ -155,8 +155,9 @@
         <option value="$PROJECT_DIR$/classes/common/Db.class.php" />
         <option value="$PROJECT_DIR$/classes/controller/LoginController.class.php" />
         <option value="$PROJECT_DIR$/classes/common/ExceptionCode.class.php" />
-        <option value="$PROJECT_DIR$/classes/model/UserModel.class.php" />
         <option value="$PROJECT_DIR$/classes/model/UserDao.class.php" />
+        <option value="$PROJECT_DIR$/classes/model/UserModel.class.php" />
+        <option value="$PROJECT_DIR$/classes/model/UserModelBase.class.php" />
       </list>
     </option>
   </component>
@@ -246,6 +247,24 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="purephplogin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="purephplogin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -282,6 +301,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/classes/dao" />
       <recent name="$PROJECT_DIR$/classes/model" />
       <recent name="$PROJECT_DIR$/docs" />
     </key>
@@ -359,12 +379,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1502712254332</updated>
-      <workItem from="1502712255758" duration="12028000" />
+      <workItem from="1502712255758" duration="12503000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12028000" />
+    <option name="totallyTimeSpent" value="12503000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -517,23 +537,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/model/UserModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="188" column="29" lean-forward="true" selection-start-line="188" selection-start-column="29" selection-end-line="188" selection-end-column="29" />
-          <folding>
-            <element signature="e#6#98#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/model/UserDao.class.php">
+    <entry file="file://$PROJECT_DIR$/classes/dao/UserDao.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
           <caret line="102" column="7" lean-forward="true" selection-start-line="102" selection-start-column="7" selection-end-line="102" selection-end-column="7" />
           <folding>
             <element signature="e#6#98#0#PHP" expanded="true" />
             <element signature="e#126#150#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/model/UserModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="93" column="19" lean-forward="false" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
+          <folding>
+            <element signature="e#6#98#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/model/UserModelBase.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="237" column="41" lean-forward="true" selection-start-line="237" selection-start-column="41" selection-end-line="237" selection-end-column="41" />
+          <folding>
+            <element signature="e#6#98#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
