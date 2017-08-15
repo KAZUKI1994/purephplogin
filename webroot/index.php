@@ -6,7 +6,18 @@
  * Time: 21:48
  */
 
-require_once '../common.php';
+namespace PureLogin;
 
-$objUserModel = new PureLogin\model\UserModel;
-var_dump($objUserModel);
+use PureLogin\controller\LoginController;
+use PureLogin\common\Template;
+
+define("LAYOUT", "index");
+
+try{
+    require_once '../common.php';
+    LoginController::login();
+}catch(\Exception $e){
+    Template::exception($e);
+}finally{
+    Template::display();
+}

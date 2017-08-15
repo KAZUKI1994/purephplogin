@@ -67,6 +67,30 @@ class UserDao{
     }
 
     /**
+     * トークンから配列を取得する
+     * @param type $token
+     * @return array
+     */
+    public static function getDaoFromToken($token){
+        $sql = "SELECT ";
+        $sql .= "`userId`";
+        $sql .= ", `password`";
+        $sql .= ", `displayName`";
+        $sql .= ", `email`";
+        $sql .= ", `token`";
+        $sql .= ", `loginFailureCount`";
+        $sql .= ", `loginFailureDatetime`";
+        $sql .= ", `deleteFlag` ";
+        $sql .= "FROM `tbl_users` ";
+        $sql .= "WHERE `token` = :token ";
+        $sql .= "AND `deleteFlag` = 0 ";
+
+        $arr = array();
+        $arr[':token'] = $token;
+        return Db::select($sql, $arr);
+    }
+
+    /**
      * 更新する
      * @param UserModel $objUserModel
      * @return bool

@@ -19,3 +19,5 @@ if(MODE === DEVELOPPING){
 
 require_once BASE_DIR . '/autoload.php';
 spl_autoload_register('autoloader');
+
+require_once BASE_DIR . '/vendor/autoload.php';

@@ -1,0 +1,9 @@
+{
+  "name": "PureLogin",
+  "description": "login",
+  "require":{
+    "php": ">=5.6.0",
+    "phpmailer/phpmailer": "~5.2",
+    "smarty/smarty": "~3.1"
+  }
+}

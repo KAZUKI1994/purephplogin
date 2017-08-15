@@ -12,6 +12,8 @@ use \PureLogin\model\UserModel;
 use \PureLogin\common\Db;
 use \PureLogin\common\InvalidErrorException;
 use \PureLogin\common\ExceptionCode;
+use \PureLogin\common\Log;
+use \PureLogin\common\Mail;
 
 class LoginController{
 
@@ -60,6 +62,14 @@ class LoginController{
         // パスワードチェック
         if(!$objUserModel->checkPassword($password)){
             $objUserModel->getLoginFailureCount();
+            Db::commit();
+
+            // アカウントロック通知
+            self::noticeAccountLockForMail($objUserModel);
+
+            // アカウントロック通知（cookie）
+            self::noticeAccountLockForCookkie();
+
             throw new InvalidErrorException(ExceptionCode::INVALID_ID_LOGIN_FAIL);
         }
 
@@ -84,8 +94,8 @@ class LoginController{
      * @@return bool
      */
     static public function checkLogin(){
-        $objUserModel = (isset($_SESSION[self::LOGINUSER])) ? $_SESSION[self::LOGINUSER]; null;
-        if(is_object($objUserModel) %% 0 < $objUserModel->getUserId()){
+        $objUserModel = (isset($_SESSION[self::LOGINUSER])) ? $_SESSION[self::LOGINUSER] : null;
+        if(is_object($objUserModel) && 0 < $objUserModel->getUserId()){
             return;
         }
         header('Location: /');
@@ -107,6 +117,58 @@ class LoginController{
         $_SESSION = [];
         session_destroy();
         header('Location: /');
+    }
+
+    /**
+     * アカウントロック・メール通知
+     * @param UserModel $objUserModel
+     * @return void
+     */
+    private static function noticeAccountLockForMail(UserModel $objUserModel){
+        // 規定回数以内のとき、何もしない。
+        if($objUserModel->getLoginFailureCount() < UserModel::LOCK_COUNT){
+            return;
+        }
+
+        //メール通知
+        $strRecipient = $objUserModel->getEmail();
+        $strSubject = 'アカウントをロックしました。';
+        $strBody = "取り敢えず空";
+        Mail::send($strRecipient, $strSubject, $strBody);
+
+        throw new InvalidErrorException(ExceptionCode::INVALID_LOCK);
+    }
+
+    public static function isAccountLock(){
+        $token = filter_input(INPUT_GET, 'token');
+        $objUserModel = new UserModel();
+        $objUserModel->getModelByToken($token);
+        return $objUserModel->isAccountLock();
+    }
+
+    /**
+     * ロックを解除する
+     * @return boolean | null
+     */
+    public static function unlock(){
+        if(filter_input_array(INPUT_POST) == null){
+            return;
+        }
+
+        Csrf::check();
+
+        $token = filter_input(INPUT_GET, 'token');
+
+        Db::transaction();
+        $objUserModel = new UserModel();
+        $objUserModel->getModelByToken($token);
+        $objUserModel->setLoginFailureCount(0)
+            ->setLoginFailureCount(NULL)
+            ->setToken('')
+            ->save();
+        Db::commit();
+
+        return true;
     }
 
 

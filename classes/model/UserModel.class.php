@@ -70,6 +70,11 @@ final class UserModel extends UserModelBase
         if ($count < self::LOCK_COUNT) {
             $now = (new \DateTime())->format('Y-m-d H:i:s');
             $this->setLoginFailureCount($count + 1)->setLoginFailureDatetime($now);
+
+            if(self::LOCK_COUNT === 1 + $count){
+                $token = sha1(uniqid());
+                $this->setToken($token);
+            }
             return $this->save();
         }
         return true;
@@ -86,11 +91,22 @@ final class UserModel extends UserModelBase
 
         $lastFailureDatetime = new \Datetime($datetime);
         $inteval = new\DateInterval(sprintf('PT%dM', self::LOCK_MINUTE));
+        $lastFailureDatetime->add($interval);
 
         // 設定時間以内で、かつ設定回数以上の失敗を記録しているとき
         if ($lastFailureDatetime > new \Datetime() && $count >= self::LOCK_COUNT) {
             return true;
         }
         return false;
+    }
+
+    /**
+     * トークンからユーザーを検索する
+     * @param string $token
+     * @return \PureLogin\model\UserModel
+     */
+    public function getModelByToken($token){
+        $dao = UserDao::getDaoFromToken($token);
+        return (isset($dao[0])) ? $this->setProperty(reset($dao)) : null;
     }
 }
